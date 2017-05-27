@@ -1,7 +1,7 @@
 import { HeadbarComponent } from './components/shared/headbar/headbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+
+import { Routing, RoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    ReactiveFormsModule,
+    HttpModule,
+
+    Routing
   ],
   providers: [],
   bootstrap: [AppComponent]
