@@ -1,3 +1,4 @@
+import { NumberDirective } from './directives/number.directive';
 import { AuthService } from './services/auth.service';
 import { CartService } from './services/cart.service';
 import { HeadbarComponent } from './components/shared/headbar/headbar.component';
@@ -19,6 +20,7 @@ import { Routing, RoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
+    NumberDirective,
     AppComponent,
     HeadbarComponent,
     SubMenuComponent,
