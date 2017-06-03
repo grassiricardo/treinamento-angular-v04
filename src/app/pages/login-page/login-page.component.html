@@ -20,9 +20,28 @@
               <br>
               <a class="button is-link is-fullwidth">AINDA NÂO SOU CADASTRADO</a>
             </p>
+            <p>
+              <button (click)="showModal()" class="button is-link is-fullwidth">TERMOS DE USO</button>
+            </p>            
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="modal animated fadeIn" id="modalId">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Termos de Uso</p>
+      <button class="delete" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      Conteúdo do Modal
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button"  (click)="closeModal()">OK</button>
+    </footer>
+  </div>
+</div>

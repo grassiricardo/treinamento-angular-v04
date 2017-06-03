@@ -1,16 +1,18 @@
+import { Ui } from './../../utils/ui';
 import { CustomValidator } from './../../validators/custom.validator';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
-  templateUrl: './login-page.component.html'
+  templateUrl: './login-page.component.html',
+  providers: [Ui]
 })
 export class LoginPageComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private ui: Ui) {
     this.form = this.fb.group({
       email: ['', Validators.compose([
         Validators.minLength(5),
@@ -30,13 +32,20 @@ export class LoginPageComponent implements OnInit {
   }
 
   checkEmail() {
-    this.form.controls['email'].disable;
-    document.getElementById('emailControl').classList.add('is-loading');
+    this.ui.lock('emailContro');
+
     setTimeout(() => {
-      this.form.controls['email'].enable;
-      document.getElementById('emailControl').classList.remove('is-loading');
+      this.ui.unlock('emailControl');
       console.log(this.form.controls['email'].value) ;
     }, 5000);
+  }
+
+  showModal() {
+    this.ui.setActive('modalId');
+  }
+
+  closeModal() {
+    this.ui.setInactive('modalId');
   }
 
 }
