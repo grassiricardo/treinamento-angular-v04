@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { CartService } from './services/cart.service';
 import { HeadbarComponent } from './components/shared/headbar/headbar.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,7 +37,7 @@ import { Routing, RoutingProviders } from './app.routing';
 
     Routing
   ],
-  providers: [CartService],
+  providers: [CartService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

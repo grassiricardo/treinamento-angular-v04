@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -9,7 +10,7 @@ const appRoutes: Routes = [
     { path: '', component: LoginPageComponent},
     { path: 'home', component: HomePageComponent},
     { path: 'signup', component: SignupPageComponent},
-    { path: 'cart', component: CartPageComponent}
+    { path: 'cart', canActivate:[AuthService], component: CartPageComponent}
 ];
 
 export const RoutingProviders: any[] = [];

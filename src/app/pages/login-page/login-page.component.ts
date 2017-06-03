@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DataService } from './../../services/data.service';
 import { Ui } from './../../utils/ui';
 import { CustomValidator } from './../../validators/custom.validator';
@@ -12,14 +13,15 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
 
   public form: FormGroup;
+  public errors:any[] = [];
 
-  constructor(private fb: FormBuilder, private ui: Ui, private dataService: DataService) {
+  constructor(private fb: FormBuilder, private ui: Ui, private dataService: DataService, private router: Router) {
     this.form = this.fb.group({
-      email: ['', Validators.compose([
+      username: ['', Validators.compose([
         Validators.minLength(5),
         Validators.maxLength(160),
         Validators.required,
-        CustomValidator.EmailValidator
+        //CustomValidator.EmailValidator
       ])],
       password: ['', Validators.compose([
         Validators.minLength(5),
@@ -27,19 +29,15 @@ export class LoginPageComponent implements OnInit {
         Validators.required
       ])]
     });
+
+    var token = localStorage.getItem('mws.token');
+    if(token) {
+      this.router.navigateByUrl('/home');
+    }
    }
 
   ngOnInit() {
     
-  }
-
-  checkEmail() {
-    this.ui.lock('emailContro');
-
-    setTimeout(() => {
-      this.ui.unlock('emailControl');
-      console.log(this.form.controls['email'].value) ;
-    }, 100);
   }
 
   showModal() {
@@ -51,7 +49,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit() {
-    this.dataService.createUser(this.form.value);
+
+    this.dataService.authenticate(this.form.value).subscribe(result => {
+      localStorage.setItem('mws.token', result.token);
+      localStorage.setItem('mws.user', JSON.stringify(result.user));
+      this.router.navigateByUrl('/home')
+    }, error => {
+      this.errors = JSON.parse(error._body).errors;
+    });
   }
 
 }
