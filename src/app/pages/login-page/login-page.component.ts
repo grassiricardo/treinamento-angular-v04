@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Ui } from './../../utils/ui';
 import { CustomValidator } from './../../validators/custom.validator';
 import { Component, OnInit } from '@angular/core';
@@ -6,13 +7,13 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  providers: [Ui]
+  providers: [Ui, DataService]
 })
 export class LoginPageComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private ui: Ui) {
+  constructor(private fb: FormBuilder, private ui: Ui, private dataService: DataService) {
     this.form = this.fb.group({
       email: ['', Validators.compose([
         Validators.minLength(5),
@@ -29,6 +30,7 @@ export class LoginPageComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.dataService.getCourses().subscribe(result => {console.log(result)}, error => {console.log(error)})
   }
 
   checkEmail() {
@@ -37,7 +39,7 @@ export class LoginPageComponent implements OnInit {
     setTimeout(() => {
       this.ui.unlock('emailControl');
       console.log(this.form.controls['email'].value) ;
-    }, 5000);
+    }, 100);
   }
 
   showModal() {
@@ -46,6 +48,10 @@ export class LoginPageComponent implements OnInit {
 
   closeModal() {
     this.ui.setInactive('modalId');
+  }
+
+  submit() {
+    this.dataService.createUser(this.form.value);
   }
 
 }

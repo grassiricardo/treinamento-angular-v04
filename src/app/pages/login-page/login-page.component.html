@@ -16,7 +16,7 @@
               <span class="tag is-danger" *ngIf="!form.controls.password.valid  && !form.controls.password.pristine">Senha inválida</span>
             </p>
             <p>
-              <button [disabled]="!form.valid" class="button is-primary is-inverted is-outlined is-large is-fullwidth">ENTRAR</button>
+              <button [disabled]="!form.valid" (click)="submit()" class="button is-primary is-inverted is-outlined is-large is-fullwidth">ENTRAR</button>
               <br>
               <a class="button is-link is-fullwidth">AINDA NÂO SOU CADASTRADO</a>
             </p>

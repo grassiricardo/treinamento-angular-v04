@@ -1,3 +1,4 @@
+import { CartService } from './services/cart.service';
 import { HeadbarComponent } from './components/shared/headbar/headbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -35,7 +36,7 @@ import { Routing, RoutingProviders } from './app.routing';
 
     Routing
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
