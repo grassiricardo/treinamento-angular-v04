@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.dataService.getCourses().subscribe(result => {console.log(result)}, error => {console.log(error)})
+    
   }
 
   checkEmail() {

@@ -6,15 +6,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DataService {
 
+    private serviceUrl: String = 'https://db7dcfce.ngrok.io/';
+
     constructor(private http: Http) { }
-
+    
     createUser(data: any) {
-        console.log(data);
-    }
-
-    getCourses() {
         return this.http
-            .get('https://abt-api.azurewebsites.net/api/courses')
+            .post(this.serviceUrl + 'v1/customers', data)
             .map((res: Response) => res.json());
     }
 }
