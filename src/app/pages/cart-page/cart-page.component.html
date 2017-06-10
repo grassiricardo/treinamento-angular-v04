@@ -6,7 +6,7 @@
       <h2 class="subtitle">
         10 itens
       </h2>
-    </div>    
+    </div>
     <br>
     <table class="table is-striped">
       <thead>
@@ -15,31 +15,46 @@
           <th class="has-text centered">Valor</th>
           <th class="has-text centered">Qtde</th>
           <th class="has-text centered">Total</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="has-text-centered">Mouse Gamer</td>
-          <td class="has-text-centered">R$ 299.90</td>
-          <td class="has-text-centered">1</td>
-          <td class="has-text-centered"><strong>R$ 299.90</strong></td>
+        <tr *ngFor="let product of items">
+          <td class="has-text-centered">{{ product.title }}</td>
+          <td class="has-text-centered"><strong>R$ {{product.price | number: '1.2-2'}}</strong></td>
+          <input class="input" type="number" [(ngModel)]="product.quantity" (change)="checkQuantity(product)" style="width: 60px;"
+          />
+          <td class="has-text-centered"><strong>R$ {{ (product.price * product.quantity) | number: '1.2-2' }}</strong></td>
+          <td class="has-text-centered"><a class="button is-small is-danger" (click)="remove(product)">Remover</a></td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="3"><h3 class="title">SubTotal</h3></td>
-          <td class="has-text-centered"><strong>R$ 299.90</strong></td>
+          <td colspan="3">
+            <h3 class="title">SubTotal</h3>
+          </td>
+          <td class="has-text-centered"><strong>R$ {{getSubTotal() | number: '1.2-2'}}</strong></td>
         </tr>
         <tr>
-          <td colspan="3"><h3 class="title">Desconto</h3></td>
-          <td class="has-text-centered"><strong>R$ 0.00</strong></td>
+          <td colspan="3">
+            <h3 class="title">Desconto</h3>
+          </td>
+          <td class="has-text-centered"><strong>R$ {{discount | number: '1.2-2'}}</strong></td>
         </tr>
         <tr>
-          <td colspan="3"><h3 class="title">Total</h3></td>
-          <td class="has-text-centered"><strong>R$ 299.90</strong></td>
+          <td colspan="3">
+            <h3 class="title">Taxa de Entrega</h3>
+          </td>
+          <td class="has-text-centered"><strong>R$ {{ deliveryFee | number: '1.2-2' }}</strong></td>
         </tr>
+        <tr>
+          <td colspan="3">
+            <h3 class="title">Total</h3>
+          </td>
+          <td class="has-text-centered"><strong>R$ {{ getSubTotal() + deliveryFee | number: '1.2-2'}}</strong></td>
+        </tr>        
       </tfoot>
-    </table>    
+    </table>
     <p class="has-text-right">
       <button class="button is-success is-large animated pulse infinite"><i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;CHECKOUT</button>
     </p>

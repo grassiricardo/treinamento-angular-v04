@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DataService {
 
-    private serviceUrl: String = 'https://db7dcfce.ngrok.io/';
+    private serviceUrl: String = 'https://7b612a56.ngrok.io/';
 
     constructor(private http: Http) { }
     
@@ -21,5 +21,11 @@ export class DataService {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.serviceUrl + 'v1/authenticate', dt, options).map((res: Response) => res.json());
+    }
+
+    getProducts() {
+        return this.http
+            .get(this.serviceUrl + 'v1/products')
+            .map((res: Response) => res.json());
     }
 }

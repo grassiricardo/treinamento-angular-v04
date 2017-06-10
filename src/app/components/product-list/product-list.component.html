@@ -1,77 +1,18 @@
 <div class="columns is-multiline">
-  <div class="column is-3 animated slideInUp">
+  <div class="column is-3 animated slideInUp" *ngFor="let product of products">
     <div class="card">
       <div class="card-image">
         <figure class="image" style="height: 100%; width: 100%;">
-          <img src="http://lorempixel.com/1200/960/" alt="Image">
+          <img src="http://lorempixel.com/1200/960/" alt="{{ product.title }}">
         </figure>
       </div>
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+        {{product.title}}
         <br>
-        h1.has-text-centered - Tab
-        <h1 class="has-text-centered"> R$ 299.90</h1>
-        <a class="button is-success is-fullwidth">
+        <h1 class="has-text-centered"> R$ {{product.price | number: '1.2-2'}}</h1>
+        <button class="button is-success is-fullwidth" (click)="addToCart(product)">
           <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp; ADICIONAR
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image" style="height: 100%; width: 100%;">
-          <img src="http://lorempixel.com/1200/960/" alt="Image">
-        </figure>
-      </div>
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <br>
-        h1.has-text-centered - Tab
-        <h1 class="has-text-centered"> R$ 299.90</h1>
-        <a class="button is-success is-fullwidth">
-          <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp; ADICIONAR
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image" style="height: 100%; width: 100%;">
-          <img src="http://lorempixel.com/1200/960/" alt="Image">
-        </figure>
-      </div>
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <br>
-        h1.has-text-centered - Tab
-        <h1 class="has-text-centered"> R$ 299.90</h1>
-        <a class="button is-success is-fullwidth">
-          <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp; ADICIONAR
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image" style="height: 100%; width: 100%;">
-          <img src="http://lorempixel.com/1200/960/" alt="Image">
-        </figure>
-      </div>
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <br>
-        h1.has-text-centered - Tab
-        <h1 class="has-text-centered"> R$ 299.90</h1>
-        <a class="button is-success is-fullwidth">
-          <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp; ADICIONAR
-        </a>
+        </button>
       </div>
     </div>
   </div>

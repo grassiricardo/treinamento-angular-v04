@@ -20,13 +20,11 @@ export class SubMenuComponent implements OnInit {
     if (data) {
       this.user = data.name;
     }
+
+    this.cartService.load();
   }
 
   ngOnInit() {
-  }
-
-  addItem() {
-    this.cartService.addItem({title: 'teste'});
   }
 
   logout() {
