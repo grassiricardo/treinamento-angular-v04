@@ -28,4 +28,14 @@ export class DataService {
             .get(this.serviceUrl + 'v1/products')
             .map((res: Response) => res.json());
     }
+
+    createOrder(data: any) {
+        var token = localStorage.getItem('mws.token');
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', `Bearer ${token}`); Headers
+        let options = new RequestOptions({ headers: headers });
+        return this.http
+            .post(this.serviceUrl + 'v1/orders', data, options)
+            .map((res: Response) => res.json());
+    }
 }

@@ -11,10 +11,10 @@
     <table class="table is-striped">
       <thead>
         <tr>
-          <th class="has-text centered">Produto</th>
-          <th class="has-text centered">Valor</th>
-          <th class="has-text centered">Qtde</th>
-          <th class="has-text centered">Total</th>
+          <th class="has-text-centered">Produto</th>
+          <th class="has-text-centered">Valor</th>
+          <th class="has-text-centered">Qtde</th>
+          <th class="has-text-centered">Total</th>
           <th></th>
         </tr>
       </thead>
@@ -56,7 +56,7 @@
       </tfoot>
     </table>
     <p class="has-text-right">
-      <button class="button is-success is-large animated pulse infinite"><i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;CHECKOUT</button>
+      <button (click)="checkout()" class="button is-success is-large animated pulse infinite"><i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;CHECKOUT</button>
     </p>
   </div>
 </section>

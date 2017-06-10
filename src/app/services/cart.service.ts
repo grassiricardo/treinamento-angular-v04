@@ -90,4 +90,10 @@ export class CartService {
     cartServiceChange() {
         this.cartChangeObserver.next(this.items);
     }
+
+    clear() {
+        this.items = [];
+        localStorage.removeItem('mws.cart');
+        this.cartServiceChange();
+    }
 }
